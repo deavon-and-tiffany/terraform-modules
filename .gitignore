@@ -1,0 +1,11 @@
+.*/**
+.*
+
+!.gitignore
+!.gitattributes
+!.editorconfig
+
+artifacts/
+
+terraform.tfstate
+terraform.tfstate.*
