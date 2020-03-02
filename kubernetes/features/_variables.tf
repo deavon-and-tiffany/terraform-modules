@@ -1,20 +1,3 @@
-variable "assume_role" {
-  type        = string
-  default     = null
-  description = "The role to assume when creating the ops configuration."
-}
-
-variable "region" {
-  type        = string
-  default     = "eu-west-2"
-  description = "The region in which to deploy resources into the account."
-}
-
-variable "cluster_name" {
-  type        = string
-  description = "The name of the cluster in which to install features."
-}
-
 variable "prometheus" {
   type = object({
     namespace    = string
@@ -68,4 +51,41 @@ variable "flux" {
   })
   default     = null
   description = "Provides for the customization of flux within the cluster."
+}
+
+locals {
+  prometheus = var.prometheus == null ? {
+    namespace    = "monitoring-system"
+    version      = null
+    force_update = false
+    values       = []
+  } : var.prometheus
+
+  grafana = var.grafana == null ? {
+    namespace    = "monitoring-system"
+    version      = null
+    force_update = false
+    values       = []
+  } : var.grafana
+
+  cert_manager = var.cert_manager == null ? {
+    namespace    = "security-system"
+    version      = null
+    force_update = false
+    values       = []
+  } : var.cert_manager
+
+  sealed_secrets = var.sealed_secrets == null ? {
+    namespace    = "security-system"
+    version      = null
+    force_update = false
+    values       = []
+  } : var.sealed_secrets
+
+  flux = var.flux == null ? {
+    namespace    = "gitops-system"
+    version      = null
+    force_update = false
+    values       = []
+  } : var.flux
 }
