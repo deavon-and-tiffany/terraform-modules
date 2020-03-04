@@ -13,7 +13,7 @@ resource "aws_iam_role_policy_attachment" "agent-readonly" {
 
 data "aws_iam_policy_document" "agent-assume" {
   statement {
-    sid     = "AllowAssumeAgent"
+    sid     = "AllowAssumeService"
     actions = ["sts:AssumeRole"]
 
     principals {
@@ -29,14 +29,20 @@ data "aws_iam_policy_document" "agent-assume" {
   }
 
   statement {
-    sid     = "AllowAssumeAdmin"
+    sid     = "AllowAssumeUser"
     actions = ["sts:AssumeRole"]
 
     principals {
       type = "AWS"
       identifiers = [
-        data.aws_caller_identity.current.arn
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
       ]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:PrincipalType"
+      values   = ["User"]
     }
   }
 }
