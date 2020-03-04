@@ -4,6 +4,7 @@
 !.gitignore
 !.gitattributes
 !.editorconfig
+!.releaserc.yaml
 
 !/.github/
 !/.github/**
