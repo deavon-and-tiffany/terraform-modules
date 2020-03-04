@@ -9,3 +9,5 @@ artifacts/
 
 terraform.tfstate
 terraform.tfstate.*
+
+azure/*
