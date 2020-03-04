@@ -5,7 +5,8 @@
 !.gitattributes
 !.editorconfig
 
-artifacts/
+!/.github/
+!/.github/**
 
 terraform.tfstate
 terraform.tfstate.*
