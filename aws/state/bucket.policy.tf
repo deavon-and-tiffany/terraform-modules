@@ -4,6 +4,7 @@ resource "aws_iam_role_policy_attachment" "terraform-state" {
 }
 
 resource "aws_iam_policy" "terraform-state" {
+  name   = "terraform-state"
   policy = data.aws_iam_policy_document.terraform-state.json
 }
 

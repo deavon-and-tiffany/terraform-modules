@@ -4,6 +4,7 @@ resource "aws_iam_role_policy_attachment" "terraform-state-lock" {
 }
 
 resource "aws_iam_policy" "terraform-state-lock" {
+  name   = "terraform-state-lock"
   policy = data.aws_iam_policy_document.terraform-state-lock.json
 }
 
