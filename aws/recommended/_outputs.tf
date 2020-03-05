@@ -15,3 +15,7 @@ output "state" {
     table   = module.state.table
   }
 }
+
+output "tags" {
+  value = local.tags
+}
